@@ -1,5 +1,5 @@
-from unit import Unit
-from enemy import Enemy
+from ...unit import Unit
+from ..enemy import Enemy
 import random
 
 
