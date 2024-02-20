@@ -17,7 +17,7 @@ class JawWorm(Enemy):
         damage = 7 + self.strength
 
         if (is_acting):
-            self.sheild += 5
+            self.shield += 5
 
         return (intent, damage)
 
@@ -27,7 +27,7 @@ class JawWorm(Enemy):
 
         if (is_acting):
             self.strength += 3
-            self.sheild += 6
+            self.shield += 6
 
         return (intent, damage)
 
