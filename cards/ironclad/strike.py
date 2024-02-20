@@ -3,7 +3,7 @@ from ...units.player import Player
 from ...units.enemies.enemy import Enemy
 
 
-class Strike(Card):
+class strike(Card):
     def __init__(self):
         super().__init__()
         self.cost = 1
