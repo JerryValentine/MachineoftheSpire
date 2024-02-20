@@ -1,11 +1,9 @@
-from units.player import Player
+from units.characters.ironclad import Ironclad
 from units.enemies.standard.jaw_worm import JawWorm
-from cards.ironclad.strike import Strike
 
 # Object Instantiation
 
-player = Player(100)
-strike = Strike()
+player = Ironclad(100)
 enemy = JawWorm()
 enemy2 = JawWorm()
 
@@ -38,7 +36,15 @@ enemy2 = JawWorm()
 # Card testing
 
 print(enemy)
-strike.play(player, enemy)
-strike.play(player, enemy)
-strike.play(player, enemy)
+print("Deck:")
+player.print_deck()
+player.draw_hand()
+print("Hand:")
+player.print_hand()
+player.play_card(player.hand[0], enemy)
+player.play_card(player.hand[0], enemy)
+player.play_card(player.hand[0], enemy)
+print("After playing cards:")
+player.print_hand()
+print(player.shield)
 print(enemy)
