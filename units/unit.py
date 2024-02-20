@@ -2,14 +2,14 @@ class Unit:
     def __init__(self, hp):
         self.hp = hp
         self.sheild = 0
-        self.stength = 0
+        self.strength = 0
         self.weakened = 0
         self.vulnerable = 0
 
     def is_alive(self):
         return self.hp > 0
 
-    def act(self, target):
+    def get_action(self):
         print("TODO")
 
     def endstep(self):

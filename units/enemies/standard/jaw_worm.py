@@ -1,34 +1,46 @@
-from ...unit import Unit
-from ..enemy import Enemy
+from ..enemy import Enemy, Intent
 import random
 
 
 class JawWorm(Enemy):
     def __init__(self):
         super().__init__(random.randrange(40, 45))
-        self.block = 0
-        self.strength = 0
 
-    def chomp(self, target: Unit):
-        target.hp -= 11
+    def chomp(self, is_acting=False):
+        intent = Intent.AGGRESSIVE
+        damage = 11 + self.strength
 
-    def thrash(self, target: Unit):
-        self.block += 5
-        target.hp -= 7
+        return (intent, damage)
 
-    def bellow(self):
-        self.strength += 3
-        self.sheild += 6
+    def thrash(self, is_acting=False):
+        intent = Intent.AGGRESSIVE_DEFENSE
+        damage = 7 + self.strength
 
-    def act(self, round, target: Unit):
-        action_chance = random.randrange(100)
+        if (is_acting):
+            self.sheild += 5
+
+        return (intent, damage)
+
+    def bellow(self, is_acting=False):
+        intent = Intent.DEFENSIVE_BUFF
+        damage = 0
+
+        if (is_acting):
+            self.strength += 3
+            self.sheild += 6
+
+        return (intent, damage)
+
+    def get_action(self, round, action_chance=None):
+        if action_chance is None:
+            action_chance = random.randrange(0, 100)
 
         if (round == 1):
-            self.chomp(target)
+            return self.chomp
         else:
             if (action_chance < 45):
-                self.bellow()
+                return self.bellow
             elif (action_chance < 75):
-                self.thrash(target)
+                return self.thrash
             else:
-                self.chomp(target)
+                return self.chomp

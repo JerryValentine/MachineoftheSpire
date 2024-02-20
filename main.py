@@ -1,4 +1,36 @@
 from units.enemies.standard import jaw_worm
 
 enemy = jaw_worm.JawWorm()
-print(enemy.hp)
+enemy2 = jaw_worm.JawWorm()
+# print(enemy.hp)
+# print(enemy2.hp)
+# enemy.act(2)
+# print(enemy2.hp)
+
+round_1 = enemy.get_action(2)
+round_2 = enemy.get_action(3)
+round_3 = enemy.get_action(4)
+round_4 = enemy.get_action(5)
+round_5 = enemy.get_action(6)
+round_6 = enemy.get_action(7)
+round_7 = enemy.get_action(8)
+
+print(round_1())
+print(round_2())
+print(round_3())
+print(round_4())
+print(round_5())
+print(round_6())
+print(round_7())
+
+print('end turn')
+
+print(round_1(True))
+print(round_2(True))
+print(round_3(True))
+print(round_4(True))
+print(round_5(True))
+print(round_6(True))
+print(round_7(True))
+print(enemy.sheild)
+print(enemy.strength)

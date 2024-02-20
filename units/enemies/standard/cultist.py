@@ -1,5 +1,4 @@
-from ...unit import Unit
-from ..enemy import Enemy
+from ..enemy import Enemy, Intent
 import random
 
 
@@ -9,15 +8,27 @@ class Cultist(Enemy):
         self.ritual = 0
         self.strength = 0
 
-    def incantation(self):
-        self.ritual += 3
+    def incantation(self, is_acting=False):
+        intent = Intent.STRATEGIC_BUFF
+        damage = 0
 
-    def dark_strike(self, target: Unit):
-        target.hp -= (6 + self.strength)
+        if (is_acting):
+            self.ritual += 3
 
-    def act(self, round, target: Unit):
+        return (intent, damage)
+
+    def dark_strike(self, is_acting=False):
+        intent = Intent.AGGRESSIVE
+        damage = (6 + self.strength)
+
+        return (intent, damage)
+
+    def act(self, round):
         if (round == 1):
-            self.incantation()
+            self.incantation
         else:
-            self.strength += self.ritual  # from ritual
-            self.dark_strike(target)
+            self.dark_strike
+
+    def endstep(self):
+        super().endstep()
+        self.strength += self.ritual
