@@ -23,3 +23,12 @@ class Enemy(Unit):
         self.poison = 0
         self.shackled = 0
         self.slow = 0
+
+    def take_dmg(self, dmg):
+        if (self.vulnerable > 1):
+            dmg = dmg * 1.5
+
+        self.shield -= dmg
+        if (self.shield < 0):
+            self.hp += self.shield
+            self.shield = 0
