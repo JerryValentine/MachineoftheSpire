@@ -1,6 +1,5 @@
 from cards.card import Card, CardType
-from units.player import Player
-from units.enemies.enemy import Enemy
+from units.unit import Unit
 
 
 class Strike(Card):
@@ -13,6 +12,6 @@ class Strike(Card):
     def upgrade(self):
         self.dmg = 9
 
-    def play(self, player: Player, target: Enemy):
-        dmg = self.calculate_dmg(player, target)
-        target.take_dmg(dmg)
+    def play(self, **units: Unit):
+        dmg = self.calculate_dmg(units['player'], units['target'])
+        units['target'].take_dmg(dmg)
