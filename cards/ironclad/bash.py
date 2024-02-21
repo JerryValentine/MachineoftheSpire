@@ -1,6 +1,5 @@
 from cards.card import Card, CardType
-from units.player import Player
-from units.enemies.enemy import Enemy
+from units.unit import Unit
 
 
 class Bash(Card):
@@ -15,7 +14,7 @@ class Bash(Card):
         self.dmg = 10
         self.vulnerable = 3
 
-    def play(self, player: Player, target: Enemy):
-        dmg = self.calculate_dmg(player, target)
-        target.take_dmg(dmg)
-        target.vulnerable += self.vulnerable
+    def play(self, **units: Unit):
+        dmg = self.calculate_dmg(units['player'], units['target'])
+        units['target'].take_dmg(dmg)
+        units['target'].vulnerable += self.vulnerable

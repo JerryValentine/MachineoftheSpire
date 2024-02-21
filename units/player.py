@@ -29,17 +29,17 @@ class Player(Unit):
 
     def draw_hand(self):
         if len(self.deck) < self.draw:
-            self.hand = self.deck[:self.draw-len(self.deck)]
+            self.hand = self.deck[:self.draw - len(self.deck)]
             self.deck = copy(self.discard)
             self.discard = []
             random.shuffle(self.deck)
-            self.hand += self.deck[:self.draw-len(self.hand)]
+            self.hand += self.deck[:self.draw - len(self.hand)]
         else:
             self.hand = self.deck[:self.draw]
             self.deck = self.deck[self.draw:]
 
     def play_card(self, card, target):
-        card.play(self, target)
+        card.play(player=self, target=target)
         self.hand.remove(card)
         self.discard.append(card)
 
