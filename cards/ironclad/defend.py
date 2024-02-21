@@ -1,6 +1,5 @@
 from cards.card import Card, CardType
-from units.player import Player
-from units.enemies.enemy import Enemy
+from units.unit import Unit
 
 
 class Defend(Card):
@@ -13,6 +12,5 @@ class Defend(Card):
     def upgrade(self):
         self.block = 8
 
-    # TODO: Don't love the idea of adding enemy as a parameter here, but it's a quick fix for now
-    def play(self, player: Player, enemy: Enemy):
-        player.shield += (self.block + player.dexterity)
+    def play(self, **units: Unit):
+        units['player'].shield += (self.block + units['player'].dexterity)
