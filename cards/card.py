@@ -18,6 +18,10 @@ class Card():
         self.dmg = 0
         self.block = 0
 
+    def exhaust(self, player: Player):
+        player.exhaust.append(self)
+        player.hand.remove(self)
+
     def calculate_dmg(self, player: Player, target: Enemy):
         dmg = self.dmg + player.strength
         if (player.weakened > 0):

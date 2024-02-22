@@ -27,6 +27,18 @@ class Player(Unit):
         print("deck not implemented yet")
         pass
 
+    def add_to_discard(self, cards: list):
+        self.discard.extend(cards)
+
+    def add_to_exhaust(self, cards: list):
+        self.exhaust.extend(cards)
+
+    def add_to_hand(self, cards: list):
+        self.hand.extend(cards)
+
+    def add_to_deck(self, cards: list):
+        self.deck.extend(cards)
+
     def draw_hand(self):
         if len(self.deck) < self.draw:
             self.hand = self.deck[:self.draw-len(self.deck)]
